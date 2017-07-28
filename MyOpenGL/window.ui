@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>291</width>
-    <height>345</height>
+    <height>372</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -144,6 +144,54 @@
      </item>
     </layout>
    </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Speed</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="speedSlider">
+       <property name="maximum">
+        <number>1000</number>
+       </property>
+       <property name="singleStep">
+        <number>100</number>
+       </property>
+       <property name="pageStep">
+        <number>100</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickInterval">
+        <number>25</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Rconus</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="horizontalSlider">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -157,6 +205,8 @@
     <slot>setXRotation(int)</slot>
     <slot>setZRotation(int)</slot>
     <slot>setYRotation(int)</slot>
+    <slot>setOrbitRadius(int)</slot>
+    <slot>setSpeed(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -185,8 +235,8 @@
    <slot>setYRotation(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>159</x>
-     <y>274</y>
+     <x>198</x>
+     <y>271</y>
     </hint>
     <hint type="destinationlabel">
      <x>145</x>
@@ -198,15 +248,31 @@
    <sender>RorbSlider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>myGLWidget</receiver>
-   <slot>setZRotation(int)</slot>
+   <slot>setOrbitRadius(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>159</x>
-     <y>317</y>
+     <x>198</x>
+     <y>303</y>
     </hint>
     <hint type="destinationlabel">
      <x>145</x>
      <y>108</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>speedSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>myGLWidget</receiver>
+   <slot>setSpeed(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>211</x>
+     <y>321</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>223</x>
+     <y>173</y>
     </hint>
    </hints>
   </connection>

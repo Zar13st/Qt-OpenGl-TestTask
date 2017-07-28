@@ -11,6 +11,7 @@
 #include "orbit.h"
 #include "satellite.h"
 
+
 class MyGLWidget : public QGLWidget
 {
     Q_OBJECT
@@ -41,7 +42,8 @@ public slots:
     // slots for slider
     void setXRotation(int angle);
     void setYRotation(int angle);
-    void setZRotation(int angle);
+    void setOrbitRadius(int radius);
+    void setSpeed(int speed);
 
     void fixedUpdate();
 

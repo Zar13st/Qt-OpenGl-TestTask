@@ -4,7 +4,6 @@
 #include <QVector>
 #include <QtGui>
 #include <math.h>
-#include "window.h"
 //#include "orbit.h"
 
 class Satellite
@@ -21,6 +20,7 @@ public:
     const GLfloat step = M_PI / np; // шаг изменения углов
 
     GLfloat R = 8000.0f;
+    GLfloat speed = 0;
     GLfloat phi= - M_PI;
 
 private:
@@ -30,7 +30,7 @@ private:
     QVector<GLfloat> vecVertices; // вектор вершин
     QVector<GLuint> vecIndices; // вектор индексов вершин
 
-   // Orbit parentOrbit;
+    //Orbit parentOrbit;
 };
 
 #endif // SATELLITE_H

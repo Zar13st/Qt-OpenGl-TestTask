@@ -22,8 +22,8 @@ void Satellite::draw()
 
 void Satellite::move()
 {
-    phi+=step;
-
+    phi+= (speed * 0.025f * 180) / (M_PI * R);
+    if (phi> 2*M_PI) {phi -= 2*M_PI;}
     getVerArrays();
 }
 

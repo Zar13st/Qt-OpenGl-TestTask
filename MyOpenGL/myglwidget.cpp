@@ -36,19 +36,24 @@ QSize MyGLWidget::sizeHint() const
 
 void MyGLWidget::setXRotation(int angle)
 {
-     orbit->alfa =M_PI * (float)angle/180.0f;
+     orbit->alfa = M_PI * (float)angle/180.0f;
 }
 
 void MyGLWidget::setYRotation(int angle)
 {
-    orbit->beta =M_PI * (float)angle/180.0f;
+    orbit->beta = M_PI * (float)angle/180.0f;
 }
 
-void MyGLWidget::setZRotation(int radius)
+void MyGLWidget::setOrbitRadius(int radius)
 {
     orbit->R =radius;
     orbit->satellite->R=radius;
     orbit->refresh();
+}
+
+void MyGLWidget::setSpeed(int speed)
+{
+    orbit->satellite->speed = speed;
 }
 
 void MyGLWidget::fixedUpdate()
