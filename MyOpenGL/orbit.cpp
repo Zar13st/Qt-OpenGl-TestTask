@@ -10,9 +10,9 @@ Orbit::Orbit()
 void Orbit::draw()
 {
     glPushMatrix();
-    glRotatef(alfa*180/pi, 1.0, 0.0, 0.0);
-    glRotatef(beta*180/pi, 0.0, 1.0, 0.0);
-   // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glRotatef(alfa*180/M_PI, 1.0, 0.0, 0.0);
+    glRotatef(beta*180/M_PI, 0.0, 1.0, 0.0);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glColor4f(1.00f, 0.00f, 0.00f, 1.0f); // цвет
     // указываем, откуда нужно извлечь данные о массиве вершин
     glVertexPointer(3, GL_FLOAT, 0, vecVertices.begin());

@@ -41,7 +41,7 @@ void Sphere::getVerTexArrays()
                vecVertices.push_back(R);    // пространственная z-координата вершины
                vecVertices.push_back(0.0f); // пространственная y-координата вершины            
 
-               vecTextures.push_back((phi+step/2)/(2*pi)); // текстурная x-координата вершины
+               vecTextures.push_back((phi+step/2)/(2*M_PI)); // текстурная x-координата вершины
                vecTextures.push_back(1.0f);                // текстурная y-координата вершины
             }
          }
@@ -55,7 +55,7 @@ void Sphere::getVerTexArrays()
                   vecVertices.push_back(R*cos(theta));
                   vecVertices.push_back(R*sin(theta)*sin(phi));
 
-                  vecTextures.push_back(phi/(2*pi));
+                  vecTextures.push_back(phi/(2*M_PI));
                }
                else
                {
@@ -65,7 +65,7 @@ void Sphere::getVerTexArrays()
 
                   vecTextures.push_back(1.0f);
                }
-               vecTextures.push_back((pi-theta)/pi);
+               vecTextures.push_back((M_PI-theta)/M_PI);
             }
             else // вершины "южный полюс"
             {
@@ -75,7 +75,7 @@ void Sphere::getVerTexArrays()
                   vecVertices.push_back(-R);
                   vecVertices.push_back(0.0f);
 
-                  vecTextures.push_back((phi+step/2)/(2*pi));
+                  vecTextures.push_back((phi+step/2)/(2*M_PI));
                   vecTextures.push_back(0.0f);
                }
             }

@@ -4,6 +4,7 @@
 #include <QVector>
 #include <QtGui>
 #include <math.h>
+#include "window.h"
 //#include "orbit.h"
 
 class Satellite
@@ -14,13 +15,13 @@ public:
     ~Satellite();
 
     void draw();
+    void move();
 
-    const GLfloat pi=3.141593;
     const GLuint np=72; // число частей, на которое делится полуокружность
-    const GLfloat step=pi/np; // шаг изменения углов
+    const GLfloat step = M_PI / np; // шаг изменения углов
 
     GLfloat R = 8000.0f;
-    GLfloat phi= -pi;
+    GLfloat phi= - M_PI;
 
 private:
     void getVerArrays();

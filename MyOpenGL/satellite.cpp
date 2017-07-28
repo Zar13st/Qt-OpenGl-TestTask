@@ -20,6 +20,13 @@ void Satellite::draw()
     glDrawArrays(GL_POINTS, 0, vecVertices.size()/3);
 }
 
+void Satellite::move()
+{
+    phi+=step;
+
+    getVerArrays();
+}
+
 void Satellite::getVerArrays()
 {
     vecVertices.clear();

@@ -11,12 +11,17 @@ MyGLWidget::MyGLWidget(QWidget *parent)
 {
     earth = new Sphere();
     orbit = new Orbit();
+
+    mainLoopTimer = new QTimer();
+    connect(mainLoopTimer, SIGNAL(timeout()), this, SLOT(fixedUpdate()));
+    mainLoopTimer->start(dtMainLoop);
 }
 
 MyGLWidget::~MyGLWidget()
 {
     delete earth;
     delete orbit;
+    delete mainLoopTimer;
 }
 
 QSize MyGLWidget::minimumSizeHint() const
@@ -31,20 +36,24 @@ QSize MyGLWidget::sizeHint() const
 
 void MyGLWidget::setXRotation(int angle)
 {
-     orbit->alfa =orbit->pi * (float)angle/180.0f;
-     updateGL();
+     orbit->alfa =M_PI * (float)angle/180.0f;
 }
 
 void MyGLWidget::setYRotation(int angle)
 {
-    orbit->beta =orbit->pi * (float)angle/180.0f;
-    updateGL();
+    orbit->beta =M_PI * (float)angle/180.0f;
 }
 
-void MyGLWidget::setZRotation(int angle)
+void MyGLWidget::setZRotation(int radius)
 {
-    orbit->R =angle;
+    orbit->R =radius;
+    orbit->satellite->R=radius;
     orbit->refresh();
+}
+
+void MyGLWidget::fixedUpdate()
+{
+    orbit->satellite->move();
     updateGL();
 }
 
@@ -91,25 +100,5 @@ void MyGLWidget::resizeGL(int nWidth, int nHeight)
             glOrtho(-10000.0, 10000.0, -10000.0*ratio, 10000.0*ratio, 10000.0, -10000.0);
             glViewport(0, 0, (GLint)nWidth, (GLint)nHeight); // устанавливаем видовое окно с размерами равными окну виджета
 }
-/*
-void MyGLWidget::mousePressEvent(QMouseEvent *event)
-{
-    lastPos = event->pos();
-}
 
-void MyGLWidget::mouseMoveEvent(QMouseEvent *event)
-{
-    int dx = event->x() - lastPos.x();
-    int dy = event->y() - lastPos.y();
-
-    if (event->buttons() & Qt::LeftButton) {
-       // setXRotation(xRot + 8 * dy);
-        setYRotation(yRot + 8 * dx);
-    } else if (event->buttons() & Qt::RightButton) {
-      //  setXRotation(xRot + 8 * dy);
-        setZRotation(zRot + 8 * dx);
-    }
-
-    lastPos = event->pos();
-}*/
 

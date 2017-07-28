@@ -11,6 +11,7 @@ Window::Window(QWidget *parent) :
     ui(new Ui::Window)
 {
     ui->setupUi(this);
+
 }
 
 Window::~Window()

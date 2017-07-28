@@ -12,9 +12,8 @@ public:
 
     void draw();
 
-    const GLfloat pi=3.141593, k=pi/180;
-    const GLuint np=36; // число частей, на которое делится полуокружность
-    const GLfloat step=pi/np; // шаг изменения углов
+    const GLuint np = 36; // число частей, на которое делится полуокружность
+    const GLfloat step = M_PI / np; // шаг изменения углов
 private:
     void getVerTexArrays();
     void getIndexArray();
