@@ -38,8 +38,8 @@ void Sphere::getVerTexArrays()
             {
                // добавляем в конец вектора:
                vecVertices.push_back(0.0f); // пространственная x-координата вершины
-               vecVertices.push_back(R);    // пространственная z-координата вершины
-               vecVertices.push_back(0.0f); // пространственная y-координата вершины            
+               vecVertices.push_back(R);    // пространственная y-координата вершины
+               vecVertices.push_back(0.0f); // пространственная z-координата вершины
 
                vecTextures.push_back((phi+step/2)/(2*M_PI)); // текстурная x-координата вершины
                vecTextures.push_back(1.0f);                // текстурная y-координата вершины

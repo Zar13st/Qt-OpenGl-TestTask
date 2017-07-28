@@ -10,6 +10,7 @@
 #include "sphere.h"
 #include "orbit.h"
 #include "satellite.h"
+#include "radar.h"
 
 
 class MyGLWidget : public QGLWidget
@@ -23,6 +24,7 @@ public:
 
     Sphere *earth;
     Orbit *orbit;
+    Radar *radar;
 
 signals:
 

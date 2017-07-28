@@ -11,6 +11,7 @@ MyGLWidget::MyGLWidget(QWidget *parent)
 {
     earth = new Sphere();
     orbit = new Orbit();
+    radar = new Radar();
 
     mainLoopTimer = new QTimer();
     connect(mainLoopTimer, SIGNAL(timeout()), this, SLOT(fixedUpdate()));
@@ -21,6 +22,7 @@ MyGLWidget::~MyGLWidget()
 {
     delete earth;
     delete orbit;
+    delete radar;
     delete mainLoopTimer;
 }
 
@@ -92,6 +94,7 @@ void MyGLWidget::paintGL()
     glScalef(1, 1, 1); // масштабирование по осям
     earth->draw();
     orbit->draw();
+    radar->draw();
 }
 
 void MyGLWidget::resizeGL(int nWidth, int nHeight)

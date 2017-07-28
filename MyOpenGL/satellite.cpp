@@ -1,8 +1,9 @@
 #include "satellite.h"
+#include "orbit.h"
 
-Satellite::Satellite(/*const Orbit orbit*/)
+Satellite::Satellite(/*const Orbit &orbit*/)
 {
-   // parentOrbit = orbit;
+   // *parentOrbit = orbit;
     getVerArrays();
    // getIndexArray();
 }

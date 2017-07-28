@@ -4,13 +4,14 @@
 #include <QVector>
 #include <QtGui>
 #include <math.h>
-//#include "orbit.h"
+#include "sceneobjects.h"
 
 class Satellite
 {
+    friend Orbit;
 public:
     Satellite();
-  //  Satellite(const Orbit);
+   //Satellite(const Orbit&);
     ~Satellite();
 
     void draw();
@@ -30,7 +31,7 @@ private:
     QVector<GLfloat> vecVertices; // вектор вершин
     QVector<GLuint> vecIndices; // вектор индексов вершин
 
-    //Orbit parentOrbit;
+  //  Orbit *parentOrbit;
 };
 
 #endif // SATELLITE_H

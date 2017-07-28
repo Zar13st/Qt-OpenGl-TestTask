@@ -17,12 +17,15 @@ SOURCES += main.cpp\
     myglwidget.cpp \
     sphere.cpp \
     orbit.cpp \
-    satellite.cpp
+    satellite.cpp \
+    radar.cpp
 
 HEADERS  += window.h \
     myglwidget.h \
     sphere.h \
     orbit.h \
-    satellite.h
+    satellite.h \
+    sceneobjects.h \
+    radar.h
 
 FORMS    += window.ui
