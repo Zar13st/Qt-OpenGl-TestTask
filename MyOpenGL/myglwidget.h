@@ -21,11 +21,6 @@ public:
     ~MyGLWidget();
 
     const GLfloat dtMainLoop = 25.0f;
-
-    Sphere *earth;
-    Orbit *orbit;
-    Radar *radar;
-
 signals:
 
 public slots:
@@ -37,10 +32,7 @@ protected:
 
     QSize minimumSizeHint() const;
     QSize sizeHint() const;
-   // void mousePressEvent(QMouseEvent *event);
-   // void mouseMoveEvent(QMouseEvent *event);
-
-public slots:
+private slots:
     // slots for slider
     void setXRotation(int angle);
     void setYRotation(int angle);
@@ -50,7 +42,10 @@ public slots:
     void fixedUpdate();
 
 private:
-   // QPoint lastPos;
+    Sphere *earth;
+    Orbit *orbit;
+    Radar *radar;
+
     QTimer *mainLoopTimer;
 
 };

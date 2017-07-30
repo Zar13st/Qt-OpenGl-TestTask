@@ -18,9 +18,6 @@ public:
     explicit Window(QWidget *parent = 0);
     ~Window();
 
-protected:
-    void keyPressEvent(QKeyEvent *event);
-
 private:
     Ui::Window *ui;
 };

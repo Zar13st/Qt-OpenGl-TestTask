@@ -18,15 +18,16 @@ void Radar::draw()
     glVertexPointer(3, GL_FLOAT, 0, vecRadarPos.begin());
     glPointSize(10.0f);
     glDrawArrays(GL_POINTS, 0, vecRadarPos.size()/3);
-
-    if(satelliteIsVisible){
+    //луч радара
+    if(satelliteIsVisible)
+    {
         glColor4f(1.00f, 1.00f, 0.00f, 1.0f);
         glVertexPointer(3, GL_FLOAT, 0, vecBeam.begin());
         glDrawArrays(GL_LINES, 0, vecBeam.size()/3);
     }
 
 
-  /*  //луч радара
+  /*  //луч радара ввиде конуса
     glPushMatrix();
 
     glRotatef(phiRadar*180/M_PI, 1.0, 0.0, 0.0);
@@ -41,13 +42,12 @@ void Radar::draw()
 
 void Radar::setSatellitePosition(GLfloat x, GLfloat y , GLfloat z)
 {
-    GLfloat dotProduct;
-
-    dotProduct = (x - vecRadarPos[0]) * vecRadarPos[0] + (y - vecRadarPos[1]) * vecRadarPos[1] + (z - vecRadarPos[2]) * vecRadarPos[2];
-
+    //вычисляем скалярное произведение вектора из центра земли к позиции радара и вектора от радара к спутнику
+    GLfloat dotProduct = (x - vecRadarPos[0]) * vecRadarPos[0] + (y - vecRadarPos[1]) * vecRadarPos[1] + (z - vecRadarPos[2]) * vecRadarPos[2];
+    //поле зрения радара - передняя полусфера
     if (dotProduct > 0) {satelliteIsVisible = true;}
     else {satelliteIsVisible = false;}
-
+    //формируем вектор от радара к спутнику
     vecBeam.clear();
     vecBeam.push_back(vecRadarPos[0]);
     vecBeam.push_back(vecRadarPos[1]);

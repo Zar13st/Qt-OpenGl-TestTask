@@ -14,7 +14,6 @@ void Sphere::draw()
     glVertexPointer(3, GL_FLOAT, 0, vecVertices.begin());
     // указываем, откуда нужно извлечь данные о массиве текстурных координат
     //glTexCoordPointer(2, GL_FLOAT, 0, vecTextures.begin());
-    // строим поверхности
     glDrawElements(GL_TRIANGLES, vecIndices.size(), GL_UNSIGNED_INT, vecIndices.begin());
 }
 

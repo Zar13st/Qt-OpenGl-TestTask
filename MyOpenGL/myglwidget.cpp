@@ -38,28 +38,28 @@ QSize MyGLWidget::sizeHint() const
 
 void MyGLWidget::setXRotation(int angle)
 {
-     orbit->alfa = M_PI * (float)angle/180.0f;
-     orbit->satellite->alfa = M_PI * (float)angle/180.0f;
+     orbit->setAlfa(M_PI*(float)angle/180.0f);
+     orbit->satellite->setAlfa(M_PI*(float)angle/180.0f);
      orbit->refresh();
 }
 
 void MyGLWidget::setYRotation(int angle)
 {
-    orbit->beta = M_PI * (float)angle/180.0f;
-    orbit->satellite->beta = M_PI * (float)angle/180.0f;
+    orbit->setBeta(M_PI*(float)angle/180.0f);
+    orbit->satellite->setBeta(M_PI*(float)angle/180.0f);
     orbit->refresh();
 }
 
 void MyGLWidget::setOrbitRadius(int radius)
 {
-    orbit->R =radius;
-    orbit->satellite->R=radius;
+    orbit->setR(radius);
+    orbit->satellite->setR(radius);
     orbit->refresh();
 }
 
 void MyGLWidget::setSpeed(int speed)
 {
-    orbit->satellite->speed = speed;
+    orbit->satellite->setSpeed(speed);
 }
 
 void MyGLWidget::fixedUpdate()
@@ -72,21 +72,15 @@ void MyGLWidget::fixedUpdate()
 void MyGLWidget::initializeGL()
 {
     qglClearColor(Qt::black);
-    glEnable(GL_DEPTH_TEST); // проверка глубины пикселя
+    glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_FLAT);
     glEnable(GL_CULL_FACE);
 
- //   glEnable(GL_TEXTURE_2D); // установить режим двумерных текстур
+   // glEnable(GL_TEXTURE_2D); // установить режим двумерных текстур
 
 
     glEnableClientState(GL_VERTEX_ARRAY);
    // glEnableClientState(GL_TEXTURE_COORD_ARRAY);  // активизируем массив текстурных координат
-
-    // источник света
-    //glEnable(GL_LIGHTING);
-    //glEnable(GL_LIGHT0);
-    //static GLfloat lightPosition[4] = { 3, 3, 3, 1 };
-    //glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 }
 
 void MyGLWidget::paintGL()

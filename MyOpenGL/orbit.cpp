@@ -5,31 +5,36 @@ Orbit::Orbit()
 {
     getVerArrays();
     getIndexArray();
-    satellite = new Satellite(/*this*/);
+    satellite = new Satellite();
 }
 
 void Orbit::draw()
 {
-   // glPushMatrix();
-  //  glRotatef(alfa*180/M_PI, 1.0, 0.0, 0.0);
-//    glRotatef(beta*180/M_PI, 0.0, 1.0, 0.0);
-   // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glColor4f(1.00f, 0.00f, 0.00f, 1.0f); // цвет
-    // указываем, откуда нужно извлечь данные о массиве вершин
+    glColor4f(1.00f, 0.00f, 0.00f, 1.0f);
     glVertexPointer(3, GL_FLOAT, 0, vecVertices.begin());
-    // указываем, откуда нужно извлечь данные о массиве текстурных координат
-    //glTexCoordPointer(2, GL_FLOAT, 0, vecTextures.begin());
     glDrawElements(GL_LINES, vecIndices.size(), GL_UNSIGNED_INT, vecIndices.begin());
 
     satellite->draw();
-
-  //  glPopMatrix();
 }
 
 void Orbit::refresh()
 {
     getVerArrays();
-   // getIndexArray();
+}
+
+void Orbit::setAlfa(GLfloat alfa)
+{
+    this->alfa = alfa;
+}
+
+void Orbit::setBeta(GLfloat beta)
+{
+    this->beta = beta;
+}
+
+void Orbit::setR(GLfloat R)
+{
+    this->R = R;
 }
 
 void Orbit::getVerArrays()
@@ -37,31 +42,28 @@ void Orbit::getVerArrays()
    vecVertices.clear();
    GLfloat phi;
 
-   GLfloat x,y,z,x1,y1,z1;
+   GLfloat X,Y,Z;
+   GLfloat XafterOXrot, YafterOXrot, ZafterOXrot;
+   GLfloat XafterOYrot, YafterOYrot, ZafterOYrot;
    for (GLuint i=0; i < 2*np+1; i++)
    {
       phi=i*step;
+      //стартовая орбита
+      X = R*sin(phi);
+      Y = R*cos(phi);
+      Z = 0;
+      //орбита после поворота вокруг ОХ, используем матрицу поворота
+      XafterOXrot = 1 * X + 0 * Y + 0 * Z;
+      YafterOXrot = 0 * X + cos(alfa) * Y + -sin(alfa) * Z;
+      ZafterOXrot = 0 * X + sin(alfa) * Y + cos(alfa) * Z;
+      //орбита после поворота вокруг ОY, используем матрицу поворота
+      XafterOYrot = cos(beta) * XafterOXrot + 0 * YafterOXrot + sin(beta) * ZafterOXrot;
+      YafterOYrot = 0 * XafterOXrot + 1 * YafterOXrot + 0 * ZafterOXrot;
+      ZafterOYrot = -sin(beta) * XafterOXrot + 0 * YafterOXrot + cos(beta) * ZafterOXrot;
 
-      x1 = R*sin(phi);
-      y1 = R*cos(phi)* cos(alfa);
-      z1 = R*cos(phi)* sin(alfa);
-
-      x = x1 * cos(beta) + z1 * sin(beta);
-      y = y1;
-      z = -x1 * sin(beta) + z1 * cos(beta);
-
-    /*  x1 = R * sin(phi);
-      y1 = R * cos(phi) * (1 - 2 * sin(alfa/2)*sin(alfa/2));
-      z1 = R * cos(phi) * 2 * sin(alfa/2)*cos(alfa/2);
-
-      x = x1 * (1 - 2 * sin(beta/2)*sin(beta/2)) + z1 *2* sin (beta/2)* cos(beta/2);
-      y = y1;
-      z = x1 * 2* sin (beta/2)* cos(beta/2) + z1 * (1 - 2 * sin(beta/2)*sin(beta/2));*/
-
-
-      vecVertices.push_back(x);
-      vecVertices.push_back(y);
-      vecVertices.push_back(z);
+      vecVertices.push_back(XafterOYrot);
+      vecVertices.push_back(YafterOYrot);
+      vecVertices.push_back(ZafterOYrot);
    }
 }
 
