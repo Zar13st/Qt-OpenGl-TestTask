@@ -62,10 +62,15 @@ void MyGLWidget::setSpeed(int speed)
     orbit->satellite->setSpeed(speed);
 }
 
+void MyGLWidget::setBeamR(int r)
+{
+    radar->setBeamR(r);
+}
+
 void MyGLWidget::fixedUpdate()
 {
     orbit->satellite->move();
-    radar->setSatellitePosition(orbit->satellite->getX(),orbit->satellite->getY(),orbit->satellite->getZ());
+    radar->receiveSatellitePosition(orbit->satellite->getX(),orbit->satellite->getY(),orbit->satellite->getZ());
     updateGL();
 }
 
@@ -74,7 +79,7 @@ void MyGLWidget::initializeGL()
     qglClearColor(Qt::black);
     glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_FLAT);
-    glEnable(GL_CULL_FACE);
+    //glEnable(GL_CULL_FACE);
 
    // glEnable(GL_TEXTURE_2D); // установить режим двумерных текстур
 

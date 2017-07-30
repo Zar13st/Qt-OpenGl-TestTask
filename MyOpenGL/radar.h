@@ -13,16 +13,18 @@ public:
 
     void draw();
     void scane();
-    void setSatellitePosition(GLfloat,GLfloat,GLfloat);
+    void receiveSatellitePosition(GLfloat,GLfloat,GLfloat);
+    void setBeamR(float);
 
 private:
-    void getVerArrays();
-    void getIndexArray();
+    void getRadarPositionVertices();
+    void getConusIndices();
+    void getConusVertices(GLfloat,GLfloat,GLfloat);
 
-    QVector<GLfloat> vecRadarPos; // вектор позиции радара
-    QVector<GLfloat> vecVertices; // вектор вершин луча
-    QVector<GLuint> vecIndices; // вектор индексов вершин луча
-    QVector<GLfloat> vecBeam; //линия от радара к спутнику
+    QVector<GLfloat> radarPosition; // вектор позиции радара
+    QVector<GLfloat> beamConusVertices; // вектор вершин луча
+    QVector<GLuint> beamConusIndices; // вектор индексов вершин луча
+    QVector<GLfloat> radarBeam; //линия от радара к спутнику
 
     const GLuint np = 16; // число частей, на которое делится полуокружность
     const GLfloat step = M_PI / np; // шаг изменения углов
@@ -30,11 +32,13 @@ private:
     GLfloat phiRadar = 75*M_PI/180;
     GLfloat thetaRadar = -55*M_PI/180;
     GLfloat R = 6400;
-    GLfloat phiRadarBeam = 90*M_PI/180;
-    GLfloat thetaRadarBeam = -55*M_PI/180;
-    GLfloat beamAngel = 25.0f;
-    GLfloat beamLength = 8000;
+
+    GLfloat phiRadarBeam;
+    GLfloat thetaRadarBeam;
+    GLfloat rBeam = 1000;
+
     bool satelliteIsVisible;
+
 
 };
 

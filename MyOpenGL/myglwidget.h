@@ -38,6 +38,7 @@ private slots:
     void setYRotation(int angle);
     void setOrbitRadius(int radius);
     void setSpeed(int speed);
+    void setBeamR(int r);
 
     void fixedUpdate();
 

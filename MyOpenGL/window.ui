@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>291</width>
-    <height>372</height>
+    <height>378</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -187,7 +187,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QSlider" name="horizontalSlider">
+      <widget class="QSlider" name="RconusSlider">
        <property name="minimum">
         <number>1</number>
        </property>
@@ -199,6 +199,9 @@
        </property>
        <property name="pageStep">
         <number>100</number>
+       </property>
+       <property name="value">
+        <number>1000</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -224,10 +227,10 @@
    <container>1</container>
    <slots>
     <slot>setXRotation(int)</slot>
-    <slot>setZRotation(int)</slot>
     <slot>setYRotation(int)</slot>
     <slot>setOrbitRadius(int)</slot>
     <slot>setSpeed(int)</slot>
+    <slot>setBeamR(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -294,6 +297,22 @@
     <hint type="destinationlabel">
      <x>223</x>
      <y>173</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>RconusSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>myGLWidget</receiver>
+   <slot>setBeamR(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>258</x>
+     <y>357</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>251</x>
+     <y>162</y>
     </hint>
    </hints>
   </connection>
