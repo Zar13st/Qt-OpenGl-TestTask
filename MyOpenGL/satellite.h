@@ -8,7 +8,6 @@
 
 class Satellite
 {
-    friend Orbit;
 public:
     Satellite();
     ~Satellite();

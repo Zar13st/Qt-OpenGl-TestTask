@@ -1,5 +1,4 @@
 #include "satellite.h"
-#include "orbit.h"
 
 Satellite::Satellite()
 {

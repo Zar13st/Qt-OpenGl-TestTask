@@ -4,11 +4,10 @@
 #include <QVector>
 #include <QtGui>
 #include <math.h>
-#include "sceneobjects.h"
+#include "satellite.h"
 
 class Orbit
 {
-    friend Satellite;
 public:
     Orbit();
 

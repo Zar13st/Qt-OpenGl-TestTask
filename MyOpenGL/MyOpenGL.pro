@@ -25,7 +25,6 @@ HEADERS  += window.h \
     sphere.h \
     orbit.h \
     satellite.h \
-    sceneobjects.h \
     radar.h
 
 FORMS    += window.ui
