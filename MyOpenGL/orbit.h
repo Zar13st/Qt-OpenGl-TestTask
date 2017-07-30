@@ -18,8 +18,8 @@ public:
     const GLuint np = 72; // число частей, на которое делится полуокружность
     const GLfloat step = M_PI / np; // шаг изменения углов
 
-    GLfloat alfa = - M_PI;
-    GLfloat beta = - M_PI;
+    GLfloat alfa = 0;
+    GLfloat beta = 0;
     GLfloat R = 8000.0f;
 
 

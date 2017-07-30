@@ -28,12 +28,38 @@ void Satellite::move()
     getVerArrays();
 }
 
+GLfloat Satellite::getX()
+{
+    return vecVertices[0];
+}
+
+GLfloat Satellite::getY()
+{
+    return vecVertices[1];
+}
+
+GLfloat Satellite::getZ()
+{
+    return vecVertices[2];
+}
+
 void Satellite::getVerArrays()
 {
+    GLfloat x,y,z,x1,y1,z1;
+
     vecVertices.clear();
-    vecVertices.push_back(R * sin(phi));
-    vecVertices.push_back(R * cos(phi));
-    vecVertices.push_back(0.0f);
+
+    x1 = R*sin(phi);
+    y1 = R*cos(phi)* cos(alfa);
+    z1 = R*cos(phi)* sin(alfa);
+
+    x = x1 * cos(beta) + z1 * sin(beta);
+    y = y1;
+    z = -x1 * sin(beta) + z1 * cos(beta);
+
+    vecVertices.push_back(x);
+    vecVertices.push_back(y);
+    vecVertices.push_back(z);
 }
 
 void Satellite::getIndexArray()

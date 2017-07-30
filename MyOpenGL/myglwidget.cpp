@@ -39,11 +39,15 @@ QSize MyGLWidget::sizeHint() const
 void MyGLWidget::setXRotation(int angle)
 {
      orbit->alfa = M_PI * (float)angle/180.0f;
+     orbit->satellite->alfa = M_PI * (float)angle/180.0f;
+     orbit->refresh();
 }
 
 void MyGLWidget::setYRotation(int angle)
 {
     orbit->beta = M_PI * (float)angle/180.0f;
+    orbit->satellite->beta = M_PI * (float)angle/180.0f;
+    orbit->refresh();
 }
 
 void MyGLWidget::setOrbitRadius(int radius)
@@ -61,6 +65,7 @@ void MyGLWidget::setSpeed(int speed)
 void MyGLWidget::fixedUpdate()
 {
     orbit->satellite->move();
+    radar->setSatellitePosition(orbit->satellite->getX(),orbit->satellite->getY(),orbit->satellite->getZ());
     updateGL();
 }
 
@@ -69,7 +74,7 @@ void MyGLWidget::initializeGL()
     qglClearColor(Qt::black);
     glEnable(GL_DEPTH_TEST); // проверка глубины пикселя
     glShadeModel(GL_FLAT);
-   glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
 
  //   glEnable(GL_TEXTURE_2D); // установить режим двумерных текстур
 
@@ -92,6 +97,7 @@ void MyGLWidget::paintGL()
     glEnable(GL_ALPHA_TEST);
     glEnable(GL_BLEND);
     glScalef(1, 1, 1); // масштабирование по осям
+
     earth->draw();
     orbit->draw();
     radar->draw();
