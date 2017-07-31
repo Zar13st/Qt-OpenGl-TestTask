@@ -1,5 +1,6 @@
 #include "satellite.h"
 
+
 Satellite::Satellite()
 {
     getVerArrays();

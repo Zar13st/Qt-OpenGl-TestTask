@@ -4,7 +4,6 @@
 #include <QVector>
 #include <QtGui>
 #include <math.h>
-#include "sceneobjects.h"
 
 class Satellite
 {

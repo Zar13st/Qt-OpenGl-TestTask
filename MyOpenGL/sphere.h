@@ -17,11 +17,13 @@ public:
 private:
     void getVerTexArrays();
     void getIndexArray();
-   // void genTexture();
+    //void genTexture();
 
     QVector<GLfloat> vecVertices; // вектор вершин
     QVector<GLfloat> vecTextures; // вектор текстурных координат
     QVector<GLuint> vecIndices; // вектор индексов вершин
+
+    GLuint textureID;
 };
 
 

@@ -49,6 +49,8 @@ private:
 
     QTimer *mainLoopTimer;
 
+    GLuint textureID;
+
 };
 
 #endif // MYGLWIDGET_H

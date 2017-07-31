@@ -1,4 +1,6 @@
 #include "sphere.h"
+#include <gl/glext.h>
+#include <gl/gl.h>
 
 Sphere::Sphere()
 {
@@ -9,11 +11,12 @@ Sphere::Sphere()
 
 void Sphere::draw()
 {
+    glBindTexture(GL_TEXTURE_2D, textureID);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glColor4f(0.00f, 0.00f, 1.00f, 1.0f);
     glVertexPointer(3, GL_FLOAT, 0, vecVertices.begin());
     // указываем, откуда нужно извлечь данные о массиве текстурных координат
-    //glTexCoordPointer(2, GL_FLOAT, 0, vecTextures.begin());
+  //  glTexCoordPointer(2, GL_FLOAT, 0, vecTextures.begin());
     glDrawElements(GL_TRIANGLES, vecIndices.size(), GL_UNSIGNED_INT, vecIndices.begin());
 }
 
@@ -140,7 +143,7 @@ void Sphere::getIndexArray()
 /*void Sphere::genTexture() // функия создания текстуры
 {
    // создаём, связываем, загружаем, возвращаем уникальный номер:
-   textureID[0]=bindTexture(QPixmap(QString("earth.jpg")), GL_TEXTURE_2D, GL_RGBA);
+   textureID=bindTexture(QPixmap(QString("earth.jpg")), GL_TEXTURE_2D, GL_RGBA);
    // далее параметры текстурного объекта
    // при фильтрации игнорируются тексели, выходящие за границу текстуры для s координаты
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
