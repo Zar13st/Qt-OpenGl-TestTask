@@ -28,3 +28,6 @@ HEADERS  += window.h \
     radar.h
 
 FORMS    += window.ui
+
+RESOURCES += \
+    textures.qrc

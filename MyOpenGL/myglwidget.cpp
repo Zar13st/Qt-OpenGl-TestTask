@@ -9,9 +9,7 @@
 MyGLWidget::MyGLWidget(QWidget *parent)
     : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
 {
-    earth = new Sphere();
-    orbit = new Orbit();
-    radar = new Radar();
+
 
     mainLoopTimer = new QTimer();
     connect(mainLoopTimer, SIGNAL(timeout()), this, SLOT(fixedUpdate()));
@@ -79,13 +77,16 @@ void MyGLWidget::initializeGL()
     qglClearColor(Qt::black);
     glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_FLAT);
-    //glEnable(GL_CULL_FACE);
+   // glEnable(GL_CULL_FACE);
 
-   // glEnable(GL_TEXTURE_2D); // установить режим двумерных текстур
+    glEnable(GL_TEXTURE_2D); // установить режим двумерных текстур
 
+    earth = new Sphere();
+    orbit = new Orbit();
+    radar = new Radar();
 
     glEnableClientState(GL_VERTEX_ARRAY);
-  //  glEnableClientState(GL_TEXTURE_COORD_ARRAY);  // активизируем массив текстурных координат
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);  // активизируем массив текстурных координат
 }
 
 void MyGLWidget::paintGL()

@@ -1,23 +1,33 @@
 #include "sphere.h"
-#include <gl/glext.h>
-#include <gl/gl.h>
 
 Sphere::Sphere()
 {
     getVerTexArrays();
     getIndexArray();
-    //genTexture();
+    genTexture();
+}
+
+Sphere::~Sphere()
+{
+
 }
 
 void Sphere::draw()
 {
-    glBindTexture(GL_TEXTURE_2D, textureID);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glColor4f(0.00f, 0.00f, 1.00f, 1.0f);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    glBindTexture(GL_TEXTURE_2D, textureID[0]);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glColor4f(1.00f, 1.00f, 1.00f, 1.0f);
+
+    glPushMatrix();
+    glRotatef(-90, 1.0, 0.0, 0.0);
     glVertexPointer(3, GL_FLOAT, 0, vecVertices.begin());
-    // указываем, откуда нужно извлечь данные о массиве текстурных координат
-  //  glTexCoordPointer(2, GL_FLOAT, 0, vecTextures.begin());
+    glTexCoordPointer(2, GL_FLOAT, 0, vecTextures.begin());
     glDrawElements(GL_TRIANGLES, vecIndices.size(), GL_UNSIGNED_INT, vecIndices.begin());
+    glPopMatrix();
+
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 void Sphere::getVerTexArrays()
@@ -40,8 +50,9 @@ void Sphere::getVerTexArrays()
             {
                // добавляем в конец вектора:
                vecVertices.push_back(0.0f); // пространственная x-координата вершины
-               vecVertices.push_back(R);    // пространственная y-координата вершины
+                   // пространственная y-координата вершины
                vecVertices.push_back(0.0f); // пространственная z-координата вершины
+                vecVertices.push_back(R);
 
                vecTextures.push_back((phi+step/2)/(2*M_PI)); // текстурная x-координата вершины
                vecTextures.push_back(1.0f);                // текстурная y-координата вершины
@@ -54,16 +65,18 @@ void Sphere::getVerTexArrays()
                if (i<2*np)
                {
                   vecVertices.push_back(R*sin(theta)*cos(phi));
-                  vecVertices.push_back(R*cos(theta));
+
                   vecVertices.push_back(R*sin(theta)*sin(phi));
+vecVertices.push_back(R*cos(theta));
 
                   vecTextures.push_back(phi/(2*M_PI));
                }
                else
                {
                   vecVertices.push_back(R*sin(theta));
-                  vecVertices.push_back(R*cos(theta));
+
                   vecVertices.push_back(0.0f);
+                  vecVertices.push_back(R*cos(theta));
 
                   vecTextures.push_back(1.0f);
                }
@@ -74,8 +87,9 @@ void Sphere::getVerTexArrays()
                if (i<2*np)
                {
                   vecVertices.push_back(0.0f);
-                  vecVertices.push_back(-R);
+
                   vecVertices.push_back(0.0f);
+                                    vecVertices.push_back(-R);
 
                   vecTextures.push_back((phi+step/2)/(2*M_PI));
                   vecTextures.push_back(0.0f);
@@ -140,15 +154,16 @@ void Sphere::getIndexArray()
       }
    }
 }
-/*void Sphere::genTexture() // функия создания текстуры
+void Sphere::genTexture() // функия создания текстуры
 {
-   // создаём, связываем, загружаем, возвращаем уникальный номер:
-   textureID=bindTexture(QPixmap(QString("earth.jpg")), GL_TEXTURE_2D, GL_RGBA);
-   // далее параметры текстурного объекта
-   // при фильтрации игнорируются тексели, выходящие за границу текстуры для s координаты
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-   // при фильтрации игнорируются тексели, выходящие за границу текстуры для t координаты
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-   // цвет текселя полностью замещает цвет фрагмента фигуры
-   glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-}*/
+   glGenTextures( 1, textureID);
+    bool test = earthTexture.load(":/earth.jpg");
+    if (test){glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);}
+    earthTexture = QGLWidget::convertToGLFormat(earthTexture);
+    glBindTexture(GL_TEXTURE_2D, textureID[0]);
+    glTexImage2D(GL_TEXTURE_2D, 0, 3, (GLsizei)earthTexture.width(), (GLsizei)earthTexture.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, earthTexture.bits());
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+}

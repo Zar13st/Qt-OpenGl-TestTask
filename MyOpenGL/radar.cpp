@@ -26,6 +26,7 @@ void Radar::draw()
         glVertexPointer(3, GL_FLOAT, 0, radarBeam.begin());
         glDrawArrays(GL_LINES, 0, radarBeam.size()/3);
         //конус
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         glColor4f(1.00f, 1.00f, 0.00f, 1.0f);
         glVertexPointer(3, GL_FLOAT, 0, beamConusVertices.begin());
         glDrawElements(GL_TRIANGLES, beamConusIndices.size(), GL_UNSIGNED_INT, beamConusIndices.begin());
