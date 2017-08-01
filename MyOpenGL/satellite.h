@@ -21,13 +21,10 @@ public:
     void setR(GLfloat);
     void setSpeed(GLfloat);
 
-    const GLuint np=72; // число частей, на которое делится полуокружность
-    const GLfloat step = M_PI / np; // шаг изменения углов
-
 private:
     void getVerArrays();
 
-    const GLuint np=72; // число частей, на которое делится полуокружность
+    const GLuint np=72; // число частей на которое делится полуокружность
     const GLfloat step = M_PI / np; // шаг изменения углов
 
     QVector<GLfloat> vecVertices; // вектор вершин
