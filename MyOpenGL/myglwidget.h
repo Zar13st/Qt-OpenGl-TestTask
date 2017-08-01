@@ -20,7 +20,7 @@ public:
     explicit MyGLWidget(QWidget *parent = 0);
     ~MyGLWidget();
 
-    const GLfloat dtMainLoop = 25.0f;
+    const GLfloat dtMainLoop = 25.0f; //мс
 signals:
 
 public slots:

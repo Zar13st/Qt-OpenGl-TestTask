@@ -49,10 +49,9 @@ void Sphere::getVerTexArrays()
             if (i<2*np)
             {
                // добавляем в конец вектора:
-               vecVertices.push_back(0.0f); // пространственная x-координата вершины
-                   // пространственная y-координата вершины
-               vecVertices.push_back(0.0f); // пространственная z-координата вершины
-                vecVertices.push_back(R);
+               vecVertices.push_back(0.0f);
+               vecVertices.push_back(0.0f);
+               vecVertices.push_back(R);
 
                vecTextures.push_back((phi+step/2)/(2*M_PI)); // текстурная x-координата вершины
                vecTextures.push_back(1.0f);                // текстурная y-координата вершины
@@ -65,16 +64,14 @@ void Sphere::getVerTexArrays()
                if (i<2*np)
                {
                   vecVertices.push_back(R*sin(theta)*cos(phi));
-
                   vecVertices.push_back(R*sin(theta)*sin(phi));
-vecVertices.push_back(R*cos(theta));
+                  vecVertices.push_back(R*cos(theta));
 
                   vecTextures.push_back(phi/(2*M_PI));
                }
                else
                {
                   vecVertices.push_back(R*sin(theta));
-
                   vecVertices.push_back(0.0f);
                   vecVertices.push_back(R*cos(theta));
 
@@ -87,9 +84,8 @@ vecVertices.push_back(R*cos(theta));
                if (i<2*np)
                {
                   vecVertices.push_back(0.0f);
-
                   vecVertices.push_back(0.0f);
-                                    vecVertices.push_back(-R);
+                  vecVertices.push_back(-R);
 
                   vecTextures.push_back((phi+step/2)/(2*M_PI));
                   vecTextures.push_back(0.0f);

@@ -27,6 +27,9 @@ public:
 private:
     void getVerArrays();
 
+    const GLuint np=72; // число частей, на которое делится полуокружность
+    const GLfloat step = M_PI / np; // шаг изменения углов
+
     QVector<GLfloat> vecVertices; // вектор вершин
 
     GLfloat R = 8000.0f;
@@ -34,6 +37,7 @@ private:
     GLfloat phi= 0;
     GLfloat alfa = 0;
     GLfloat beta = 0;
+    GLfloat fps = 0.025f;
 };
 
 #endif // SATELLITE_H
